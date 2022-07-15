@@ -146,12 +146,9 @@ jobs:
             - project/.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure
       - destroy-environment
-  
+
   configure-infrastructure:
     docker:
-      # Docker image here that supports Ansible
-    steps:
-      docker:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
@@ -172,9 +169,8 @@ jobs:
           command: |
             cd .circleci/ansible
             ansible-playbook -i ~/workspace/inventory.txt configure-server.yml
-      # Here's where you will add some code to rollback on failure 
-      # - destroy-environment   
-
+      # Here's where you will add some code to rollback on failure
+      # - destroy-environment
 
 workflows:
   default:
