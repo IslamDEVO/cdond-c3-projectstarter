@@ -14,13 +14,6 @@
   apt:
     autoremove: yes
 
-# - name: 'install dependencies.'
-#   become: yes
-#   apt:
-#     name: ['nodejs', 'npm']
-#     state: present
-#     update_cache: yes
-
 - name: 'Add nodejs apt key'
   become: yes
   apt_key:
