@@ -18,8 +18,7 @@
   become: yes
   apt:
     name: ['nodejs', 'npm']
-    state: latest
-    global: yes
+    state: present
     update_cache: yes
 
 - name: 'install pm2'
