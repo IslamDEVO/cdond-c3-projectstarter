@@ -40,16 +40,18 @@
     name: nodejs
     state: present
 
-- name: 'install dependencies.'
+- name: 'Install NPM-distributed command-line tools'
   become: yes
-  apt:
-    update_cache: yes
-    name: npm
+  npm:
+    global: yes
+    name: '{{ item }}'
+  with_items:
+    - firebase-tools
+
+- name: 'install pm2'
+  become: yes
+  npm:
+    name: pm2
+    global: yes
+    production: yes
     state: present
-# - name: 'install pm2'
-#   become: yes
-#   npm:
-#     name: pm2
-#     global: yes
-#     production: yes
-#     state: present
