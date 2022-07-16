@@ -189,7 +189,7 @@ jobs:
 
   run-migrations:
     docker:
-      - image: circleci/node:15.12.0-stretch-browsers-legacy
+      - image: node:15.12.0
     steps:
       - checkout
       - run:
