@@ -246,10 +246,11 @@ jobs:
             echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> ".env"
             echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> ".env"
             echo TYPEORM_DATABASE=$TYPEORM_DATABASE >> ".env"
+            cat ".env"
             cd backend
             npm install
             # npm run build 
-            npm run migrations:revert
+            #npm run migrations:revert
             npm run migrations --force > migrations_dump.txt
             cat migrations_dump.txt
 
