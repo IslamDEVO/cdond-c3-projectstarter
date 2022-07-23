@@ -6,8 +6,9 @@
 
 - name: Copy files
   copy:
-    src: "/root/project/backend.tar.gz"
+    src: "/home/circleci/project/backend/backend.tar.gz"
     dest: "~/backend-app"
+    remote_src: true
   
 # - name: Extract backend.tgz
 #   unarchive:
@@ -19,7 +20,6 @@
   unarchive:
     src: ~/backend-app/backend.tar.gz
     dest: ~/backend-app
-    remote_src: true
 
 - name: "Installing Node Dependencies"
   shell: |
