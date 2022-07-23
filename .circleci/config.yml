@@ -331,7 +331,7 @@ jobs:
             tar -czf backend.tar.gz dist/* package*
             # tar -czvf backend.tar.gz backend
             cd ..
-            cp backend/artifact.tar.gz ~/ 
+            cp backend/backend.tar.gz ~/ 
       - run:
           name: Deploy backend
           command: |
