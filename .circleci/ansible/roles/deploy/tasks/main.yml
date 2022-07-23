@@ -4,9 +4,20 @@
     path: ~/backend-app
     state: directory
 
+- name: Copy files
+  copy:
+    src: /root/project/backend.tar.gz
+    dest: ~/backend-app
+  
+# - name: Extract backend.tgz
+#   unarchive:
+#     src: ~/web/backend.tar.gz
+#     dest: ~/web
+#     remote_src: true
+
 - name: "Unarchive backend files"
   unarchive:
-    src: /root/project/.circleci/ansible/roles/deploy/files/artifact.tar.gz
+    src: ~/backend-app/backend.tar.gz
     dest: ~/backend-app
 
 - name: "Installing Node Dependencies"
