@@ -206,7 +206,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["64:32:93:db:6a:cd:94:20:f5:68:1f:fc:9e:15:d1:cc"]
+          fingerprints: ["90:87:c7:ea:5c:87:5b:c8:5f:fa:09:23:fb:66:c7:db"]
       - run:
           name: Install dependencies
           command: |
@@ -313,7 +313,7 @@ jobs:
       - install_ansible
       - install_nodejs
       - add_ssh_keys:
-          fingerprints: ["64:32:93:db:6a:cd:94:20:f5:68:1f:fc:9e:15:d1:cc"]
+          fingerprints: ["90:87:c7:ea:5c:87:5b:c8:5f:fa:09:23:fb:66:c7:db"]
       - attach_workspace:
           at: ~/workspace
       - restore_cache:
