@@ -328,10 +328,10 @@ jobs:
           command: |
             cd backend
             npm run build
-            tar -czf backend.tar.gz dist/* package*
-            # tar -czvf backend.tar.gz backend
             cd ..
-            cp backend/backend.tar.gz /
+            tar -czf backend/backend.tar.gz dist/* package*
+            # tar -czvf backend.tar.gz backend
+            # cp backend/backend.tar.gz /
             pwd
             ls
       - run:
