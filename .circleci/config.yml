@@ -337,8 +337,8 @@ jobs:
             cd .circleci/ansible
             cat ~/workspace/inventory.txt
             ansible-playbook -i ~/workspace/inventory.txt deploy-backend.yml
-      - destroy-environment
-      - revert-migrations
+      # - destroy-environment
+      # - revert-migrations
 
 workflows:
   default:
