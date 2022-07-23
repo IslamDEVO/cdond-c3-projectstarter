@@ -329,7 +329,7 @@ jobs:
             cd backend
             npm run build
             cd ..
-            tar -czf backend/backend.tar.gz dist/* package*
+            tar -czf backend.tar.gz backend/dist/* backend/package*
             # tar -czvf backend.tar.gz backend
             # cp backend/backend.tar.gz /
             pwd
