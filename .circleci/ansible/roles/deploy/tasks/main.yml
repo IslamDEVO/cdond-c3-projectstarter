@@ -6,8 +6,8 @@
 
 - name: Copy files
   copy:
-    src: /root/project/backend.tar.gz
-    dest: ~/backend-app
+    src: "/root/project/backend.tar.gz"
+    dest: "~/backend-app"
   
 # - name: Extract backend.tgz
 #   unarchive:
