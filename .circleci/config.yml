@@ -254,6 +254,8 @@ jobs:
             cat ".env"
             cd backend
             npm install
+            # npm run build 
+            npm run migrations:revert
             npm run migrations > migrations_dump.txt
             #cat migrations_dump.txt
 
@@ -386,14 +388,18 @@ workflows:
       #         only: [master]
       # - configure-infrastructure:
       #     requires: [deploy-infrastructure]
-      - run-migrations
-          # requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [run-migrations]
-      - deploy-backend :
-          requires: [run-migrations]
+      # - run-migrations:
+      #     requires: [configure-infrastructure]
+      #c
+      #     requires: [run-migrations]
+      # - deploy-backend :
+      #     requires: [run-migrations]
+      # - smoke-test :
+      #     requires: [deploy-backend, deploy-frontend]
+      - deploy-backend
       - smoke-test :
-          requires: [deploy-backend, deploy-frontend]
+          requires: [deploy-backend]
+
       # - cloudfront-update:
       #     requires: [smoke-test]
       # - cleanup:
