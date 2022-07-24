@@ -169,22 +169,22 @@ jobs:
           name: Install tar utility
           command: |
             yum install -y tar gzip
-      # - run:
-      #     name: Ensure back-end infrastructure exists
-      #     command: |
-      #       aws cloudformation deploy \
-      #         --template-file .circleci/files/backend.yml \
-      #         --tags project=udapeople \
-      #         --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID}" \
-      #         --parameter-overrides ID="${CIRCLE_WORKFLOW_ID}"
-      # - run:
-      #     name: Ensure front-end infrastructure exist
-      #     command: |
-      #       aws cloudformation deploy \
-      #         --template-file .circleci/files/frontend.yml \
-      #         --tags project=udapeople \
-      #         --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID}" \
-      #         --parameter-overrides ID="${CIRCLE_WORKFLOW_ID}"
+      - run:
+          name: Ensure back-end infrastructure exists
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/backend.yml \
+              --tags project=udapeople \
+              --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID}" \
+              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID}"
+      - run:
+          name: Ensure front-end infrastructure exist
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/frontend.yml \
+              --tags project=udapeople \
+              --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID}" \
+              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID}"
       - run:
           name: Add back-end ip to ansible inventory
           command: |
@@ -326,11 +326,8 @@ jobs:
       - run:
           name: Package backend
           command: |
-            cd backend
-            npm run build
-            tar -czf artifact.tar.gz dist/* package*
-            cd ..
-            cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
+            tar -czvf backend.tar.gz backend
+            cp artifact.tar.gz .circleci/ansible/roles/deploy/files
             pwd
             cd /home/circleci/project/.circleci/ansible/roles/deploy/files && ls
       - run:
@@ -372,7 +369,7 @@ jobs:
             FRONTEND_WEBSITE=http://udapeople-${CIRCLE_WORKFLOW_ID}.s3-website.${AWS_DEFAULT_REGION}.amazonaws.com
             if curl -s $FRONTEND_WEBSITE | grep "Welcome"
             then
-              exit 0
+              exit 1
             else
               exit 1
             fi 

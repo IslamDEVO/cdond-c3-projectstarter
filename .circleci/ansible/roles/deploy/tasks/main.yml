@@ -1,4 +1,19 @@
 ---
+- name: "update apt packages."
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: "upgrade packages"
+  become: yes
+  apt:
+    upgrade: yes
+    
+- name: remove dependencies that are no longer required
+  become: yes
+  apt:
+    autoremove: yes
+
 - name: "Creates backend app directory"
   file:
     path: ~/backend-app
@@ -9,10 +24,9 @@
     src: artifact.tar.gz
     dest: ~/backend-app
 
-- name: "Installing Node Dependencies"
+- name: "Executing node"
   shell: |
     cd ~/backend-app
-    # npm i
     echo {{ lookup('env', 'TYPEORM_CONNECTION') }}
     echo "ENVIRONMENT = production" > .env
     echo TYPEORM_CONNECTION= {{ lookup('env', 'TYPEORM_CONNECTION') }} >> .env
@@ -26,7 +40,6 @@
     npm i
     npm run build
     pm2 start --no-autorestart npm -- start
-  register: execute_node
 
 # - name: "Executing Node app with PM2"
 #   shell: |
@@ -35,9 +48,9 @@
 #     pm2 start main.js
 #   register: execute_node
 
-- name: print message
-  debug:
-    msg: "{{ execute_node.stdout_lines }}"
+# - name: print message
+#   debug:
+#     msg: "{{ execute_node.stdout_lines }}"
 
 # - name: "Configure pm2 to start as service"
 #   become: true 
