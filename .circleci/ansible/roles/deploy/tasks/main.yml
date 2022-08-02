@@ -42,7 +42,6 @@
     npm i
     npm run build
     npm start
-  register: execute_node
 
 # - name: "Executing Node app with PM2"
 #   shell: |
@@ -51,9 +50,9 @@
 #     pm2 start main.js
 #   register: execute_node
 
-- name: print message
-  debug:
-    msg: "{{ execute_node.stdout_lines }}"
+# - name: print message
+#   debug:
+#     msg: "{{ execute_node.stdout_lines }}"
 
 # - name: "Configure pm2 to start as service"
 #   become: true 
