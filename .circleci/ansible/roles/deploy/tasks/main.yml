@@ -41,10 +41,10 @@
     npm run build
 
 - name: "Build node"
-  shell: |
+  command: |
     cd ~/backend-app/backend/
     npm start
-    
+
 # - name: "Executing Node app with PM2"
 #   shell: |
 #     cd ~/backend-app/dist
