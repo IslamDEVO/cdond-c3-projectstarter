@@ -40,10 +40,11 @@
     npm i
     npm run build
 
-- name: "Build node"
-  command: |
-    cd ~/backend-app/backend/
-    npm start
+- name: "Run node"
+  tasks:
+    command: |
+      cd ~/backend-app/backend/
+      npm start
 
 # - name: "Executing Node app with PM2"
 #   shell: |
