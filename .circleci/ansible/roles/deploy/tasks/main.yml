@@ -24,11 +24,9 @@
     src: artifact.tar.gz
     dest: ~/backend-app
 
-- name: "Executing node"
+- name: "Build node"
   shell: |
     cd ~/backend-app/backend/
-    pwd
-    ls
     echo {{ lookup('env', 'TYPEORM_CONNECTION') }}
     echo "ENVIRONMENT = production" > .env
     echo TYPEORM_CONNECTION= {{ lookup('env', 'TYPEORM_CONNECTION') }} >> .env
@@ -41,8 +39,12 @@
     cat .env
     npm i
     npm run build
-    npm start
 
+- name: "Build node"
+  shell: |
+    cd ~/backend-app/backend/
+    npm start
+    
 # - name: "Executing Node app with PM2"
 #   shell: |
 #     cd ~/backend-app/dist
