@@ -14,6 +14,15 @@
   apt:
     autoremove: yes
 
+- name: install rsync on the ansible controller
+  become: yes
+  connection: local
+  package:
+    name: 
+      - openssh
+      - rsync
+    state: present
+
 - name: "Creates backend app directory"
   file:
     path: ~/backend-app
@@ -26,7 +35,9 @@
 
 - name: "Executing node"
   shell: |
-    cd ~/backend-app
+    cd ~/backend-app/backend/
+    pwd
+    ls
     echo {{ lookup('env', 'TYPEORM_CONNECTION') }}
     echo "ENVIRONMENT = production" > .env
     echo TYPEORM_CONNECTION= {{ lookup('env', 'TYPEORM_CONNECTION') }} >> .env
