@@ -14,15 +14,6 @@
   apt:
     autoremove: yes
 
-- name: install rsync on the ansible controller
-  become: yes
-  connection: local
-  package:
-    name: 
-      - openssh
-      - rsync
-    state: present
-
 - name: "Creates backend app directory"
   file:
     path: ~/backend-app
