@@ -361,6 +361,10 @@ jobs:
       - checkout
       - install_awscli
       # - install_nodejs
+      - run: 
+            name: install dependencies
+            command: |
+              apk add --update curl
       - run:
           name: Backend smoke test
           command: |
@@ -388,8 +392,8 @@ jobs:
             else
               exit 1
             fi 
-      - destroy-environment
-      - revert-migrations
+      # - destroy-environment
+      # - revert-migrations
 
 workflows:
   default:
