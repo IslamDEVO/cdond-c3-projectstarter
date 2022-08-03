@@ -311,6 +311,7 @@ jobs:
       - checkout
       - install_awscli
       - install_ansible
+      - install_nodejs
       - add_ssh_keys:
           fingerprints: ["90:87:c7:ea:5c:87:5b:c8:5f:fa:09:23:fb:66:c7:db"]
       - attach_workspace:
@@ -350,8 +351,8 @@ jobs:
               --query "Reservations[*].Instances[*].PublicIpAddress" --output text >> inventory.txt
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
-      # - destroy-environment
-      # - revert-migrations
+      - destroy-environment
+      - revert-migrations
 
   smoke-test:
     docker:
