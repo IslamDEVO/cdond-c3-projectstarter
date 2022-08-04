@@ -411,13 +411,13 @@ jobs:
       - run:
             name: Get old stack workflow id 
             command: |
-              export STACKS=$(curl --insecure  https://kvdb.io/5hrakTfGf13nJvxAgSYgNx/oldstacks_${CIRCLE_WORKFLOW_ID:0:7})
+              export STACKS=$(curl --insecure  https://kvdb.io/5hrakTfGf13nJvxAgSYgNx/oldstacks_${CIRCLE_WORKFLOW_ID})
               echo Stacks: "${STACKS}"
-              export OldWorkflowID=$(curl --insecure  https://kvdb.io/5hrakTfGf13nJvxAgSYgNx/oldid_${CIRCLE_WORKFLOW_ID:0:7})
+              export OldWorkflowID=$(curl --insecure  https://kvdb.io/5hrakTfGf13nJvxAgSYgNx/oldid_${CIRCLE_WORKFLOW_ID})
               echo OldWorkflowID: "${OldWorkflowID}"
-              echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"
+              echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID}"
           
-              if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
+              if [[ "${CIRCLE_WORKFLOW_ID}" != "${OldWorkflowID}" ]]
               then
                 if [[ "${STACKS}"  != 0 ]]
                 then
